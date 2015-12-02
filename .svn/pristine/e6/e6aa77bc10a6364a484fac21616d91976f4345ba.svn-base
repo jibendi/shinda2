@@ -1,0 +1,93 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Urine */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+    <?php $form = ActiveForm::begin(); ?>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h3 class="panel-title">
+               <kbd>
+                    <h5> Study No : 10 PID : 458756  DOB : 14/08/2001 Gender : Male  From : Kilifi Sub loc: Maweni </h5></kbd>
+    
+              </div>
+            </h3>
+            </div>
+            <div class="panel-body">
+            <div class="row">
+                      
+                <div class="col-lg-3">
+                    <div class="panel panel-success">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Urine basic info</h3>
+                      </div>
+                        <div class="panel-body">
+
+                            <?= $form->field($model, 'date_visit')->textInput() ?>
+
+                            <?= $form->field($model, 'time_visit')->textInput() ?>
+
+                            <?= $form->field($model, 'spot_urine_collected')->textInput() ?>
+
+                            <?= $form->field($model, 'reason_not_collected')->textInput() ?>
+
+                            <?= $form->field($model, 'spot_urine_time')->textInput() ?>
+
+                            <?= $form->field($model, 'aliquots')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'sample_labelled')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'frozen')->textInput(['maxlength' => true]) ?>
+                             <?= $form->field($model, 'tech_initials_r')->textInput(['maxlength' => true]) ?>
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-9">
+                    <div class="panel panel-success">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Urine Results</h3>
+                      </div>
+                        <div class="panel-body">
+                                <table class="table table-bordered">
+                                    <thead><th>Date Collect</th><th>Date Received</th><th>Time Received</th><th>Date Results</th><th>Time Results</th></thead>
+                                    <tr><td><?= $form->field($model, 'date_collect_urine')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'date_received_urine')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'time_received_urine')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'date_result_spot_urine')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'time_result_spot_urine')->textInput()->textInput()->label(false) ?></td></tr>
+                                </table>
+
+                                <table class="table table-bordered">
+                                    <thead><th></th><th>Results</th><th>Date</th><th>Time</th></thead>
+                                    <tr><td>Urine Na</td><td> <?= $form->field($model, 'spot_na_urine')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_na_urine_date')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_na_urine_time')->textInput()->label(false) ?></td></tr>
+                                    <tr><td>Urine K</td><td> <?= $form->field($model, 'spot_k_urine')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_k_urine_date')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_na_urine_time')->textInput()->label(false) ?></td></tr>
+                                    <tr><td>Urine Cr</td><td> <?= $form->field($model, 'spot_cr_urine')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_cr_urine_date')->textInput()->label(false) ?><td>  <?= $form->field($model, 'spot_na_urine_time')->textInput()->label(false) ?></td></td></tr>
+                                    <tr><td>Urine Cr</td><td> <?= $form->field($model, 'spot_alb_urine')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_alb_urine_date')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'spot_na_urine_time')->textInput()->label(false) ?></td></tr>
+                                </table>
+                                  <?= $form->field($model, 'tech_initials_p')->textInput(['maxlength' => true]) ?>
+                            <div class="form-group">
+                                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                    <!--/////////////////////////////////////////////-->    
+
+
+                <?php ActiveForm::end(); ?>
+
+</div>

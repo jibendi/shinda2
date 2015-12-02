@@ -1,0 +1,176 @@
+<?php
+
+namespace app\controllers;
+
+use Yii;
+use app\models\Participant;
+use app\models\ParticipantSearch;
+use yii\web\Controller;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
+/**
+ * ParticipantController implements the CRUD actions for Participant model.
+ */
+class ParticipantController extends Controller
+{
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update', 'create','index', 'view', 'listpart'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['post'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * Lists all Participant models.
+     * @return mixed
+     */
+    public function actionIndex($date_appoint = '')
+    {
+        $searchModel = new ParticipantSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams, $date_appoint);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    public function actionListpart(){
+        $searchModel = new ParticipantSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('listpart', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Displays a single Participant model.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionView($id)
+    {
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    /**
+     * Creates a new Participant model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Participant();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_p]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Updates an existing Participant model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id_p]);
+        } else {
+            return $this->render('update', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Deletes an existing Participant model.
+     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['index']);
+    }
+
+    /**
+     * Finds the Participant model based on its primary key value.
+     * If the model is not found, a 404 HTTP exception will be thrown.
+     * @param integer $id
+     * @return Participant the loaded model
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    protected function findModel($id)
+    {
+        if (($model = Participant::findOne($id)) !== null) {
+            return $model;
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+    
+    public function actionVisit($id, $visit){
+        $model = $this->findModel($id);
+         if(\Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())){
+            \Yii::$app->response->format = 'json';
+            return \kartik\widgets\ActiveForm::validate($model);
+        }
+        if ($model->load(Yii::$app->request->post())) {
+            $model->save(FALSE);
+            Yii::$app->session->setFlash('success', 'The record has been updated successfully');
+            return $this->redirect(['participant/listpart']);
+        }else{
+            return $this->render('updatevisit', [
+                'model' => $model,
+            ]);
+        }
+    }
+    
+    public function actionApptmnts(){
+        $model = new Participant();
+        $year = date("Y");
+        $mon = date("m");
+        $data = $model->build_calendar($mon,$year);
+        return $this->render('appointments', ['model'=>$data]);
+    }
+    
+     function actionCalendar(){
+        $model = new Participant();
+        $year = $_POST['year'];
+        $month = $_POST['id'];
+        $data = $model->build_calendar($month,$year);
+        return $data;
+    }
+    
+}

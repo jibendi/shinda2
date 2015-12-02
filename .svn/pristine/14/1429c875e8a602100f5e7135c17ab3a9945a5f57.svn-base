@@ -1,0 +1,86 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%fragments}}".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property integer $data_upload
+ */
+class Fragments extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%fragments}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['data_upload'], 'integer'],
+            [['name'], 'string', 'max' => 30]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'name' => 'Name',
+            'data_upload' => 'Data Upload',
+        ];
+    }
+    
+    public function listComputers(){
+        $model = \yii\helpers\ArrayHelper::map($this->find()->all(), 'id', 'name');
+        return $model;
+    }
+    
+    public function getdata($id){
+        $comp = $this->findOne($id)->name;
+        $tables = ['blood', 'bp_24h', 'bp_spot', 'monitoring_bp_24_data', 'participant', 'questionnaire', 'urine'];
+        
+        foreach ($tables as $value) {
+            $this->getremotedata($value, $comp);
+        }
+        
+        return true;
+    }
+    
+    public function getremotedata($table, $comp){
+        $db = new yii\db\Connection([
+            'dsn' => "mysql:host=$comp;dbname=shinda2",
+            'username' => 'root',
+            'password' => 'FAQU',
+            'charset' => 'utf8',
+        ]);
+        $sql = "SELECT * FROM tbl_".$table." WHERE altered = 1";
+        $data = $db->createCommand($sql) //convert it to array to speend up the process
+        ->queryAll();
+        $this->insertData($data, $table);
+    }
+    
+    public function insertData($data, $table){
+        $db = \Yii::$app->db;
+        $table = "tbl_".$table;
+        $table = $db->getTableSchema($table)->columnNames;
+        foreach ($table as $colname) {
+            foreach ($data as $value) {
+                
+            }
+        }
+    }
+}

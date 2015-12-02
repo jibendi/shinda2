@@ -1,0 +1,70 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\QuestionnaireSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Questionnaires';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="questionnaire-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Questionnaire', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'fk_person',
+            'date_interview',
+            'time_interview',
+            'pregnant',
+            // 'menstruating:ntext',
+            // 'lmp:ntext',
+            // 'ever_diagnosed_hbp',
+            // 'under_med_hbp',
+            // 'hbp_med_list:ntext',
+            // 'suffered_malaria',
+            // 'mal_episodes',
+            // 'dates_mal_occured',
+            // 'mal_hospitalised',
+            // 'other_med_condition',
+            // 'med_condition_list',
+            // 'place_of_birth',
+            // 'date_of_relocation',
+            // 'places_before_relocation:ntext',
+            // 'Longest_time_away',
+            // 'left_date',
+            // 'return_date',
+            // 'place_away:ntext',
+            // 'household_school_greater_5',
+            // 'household_not_attend_primary',
+            // 'mother_edu_level',
+            // 'child_5yrs_late',
+            // 'household_malnourished',
+            // 'electricity',
+            // 'toilet_type',
+            // 'share_toilet',
+            // 'safe_drinking_water',
+            // 'distance_safe_water_access',
+            // 'floor_type',
+            // 'fuel_type',
+            // 'household_own',
+            // 'creation_name',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>

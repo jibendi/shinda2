@@ -1,0 +1,54 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bpspot */
+
+$this->title = $model->id_bps;
+$this->params['breadcrumbs'][] = ['label' => 'Bpspots', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="bpspot-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Update', ['update', 'id' => $model->id_bps], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id_bps], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id_bps',
+            'fk_study_no',
+            'fk_person',
+            'date_visit',
+            'time_visit',
+            'consent_signed',
+            'not_consented_rsn',
+            'study_info_given',
+            'height',
+            'weight',
+            'muac',
+            'ssn',
+            'pulse',
+            'bp_syst_1',
+            'bp_dyst_1',
+            'bp_syst_2',
+            'bp_dyst_2',
+            'bp_syst_3',
+            'bp_dyst_3',
+            'serial_no_bpm',
+        ],
+    ]) ?>
+
+</div>

@@ -1,0 +1,47 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\Bp24hSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Bp24hs';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="bp24h-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Bp24h', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'idbp24',
+            'fk_study_no',
+            'fk_person',
+            'date_abpm_started',
+            'time_abpm_start',
+            // 'time_abpm_end',
+            // 'leaflet_given',
+            // 'diary_given',
+            // 'time_bed',
+            // 'time_woke',
+            // 'succ_readings',
+            // 'serial_no_abpm',
+            // 'diary_collected',
+            // 'wasuploaded',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>

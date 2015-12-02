@@ -1,0 +1,324 @@
+/* 
+    Document   : custom
+    Created on : October 8, 2013, 3:15:30 PM
+    Author     : mkinuthia
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body{
+   font-family:Verdana, Arial, Helvetica, sans-serif; 
+   background-color: #ffffff;
+}
+h5{
+    padding: 0;
+    margin: 3px;
+}
+#mainContentHolder{
+    position: relative;
+    width: 1250px; 
+    margin: auto;
+    border: 1px solid #C9E0ED;
+    border-top: 6px solid #C9E0ED;
+    background-color: white;
+}
+#contentHolder{
+/*    padding: 10px;*/
+    border-top: 1px solid #333333;
+    margin: 0px 10px;
+    height:auto;
+    font-family: "georgia";
+    bottom: 0       
+}
+#mainmenu{
+    padding-top: 10px ;
+    border-top: 1px solid #314D8C;
+    margin-top:10px;
+    height:100px;
+}
+
+#buttommenu{
+    padding: 10px;
+    margin: 10px -10px;
+    font-size: 0.8em;
+    text-align: center;
+    border-top: 1px solid #333333;
+    border-radius: 5px;
+}
+.mainsearchbutton{
+    width:150px;
+    border:3px;
+    color:white;
+    height:60px;
+    background:  #86B404;
+    text-align:center; 
+    border-radius: 10px;
+    font-family: georgia;
+    font-size: 20px
+}
+
+.spansearchbutton{
+    font-size:20px;
+    color:white;
+}
+
+.searchbutton{
+    width:95px;
+    border:1px;
+    color:#ffffff;
+    height:60px;
+    background: #000000;
+    cursor:pointer;
+    text-align:center;
+    border-radius: 10px;
+    font-family: georgia;
+    font-weight: bold;
+    font-size: 14px;
+}
+   
+ 
+.searchbuttons{
+    width:100px;
+    border:1px;
+    color:#ffffff;
+    height:30px;
+    background: #648293;
+    cursor:pointer;
+    text-align:left;
+}
+.content {
+    background-color:#ffffff;
+    padding:10px;
+    border:1px solid #464c54; 
+    position: relative;
+    top:-6px;
+    overflow-x: scroll
+}
+#content{
+    position: relative
+}
+#loginframe{
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+#loginframe label{
+    width: 85px;
+}
+.myinputs input,select,textArea{
+    width: 155px;
+}
+.myinputs input[type="checkbox"]{
+    width: 80px;
+}
+.errorMessage{
+    color: red;
+}
+#sampleframe{
+    min-height: 400px;
+    width: 900px;
+    margin-left: 80px;
+    border: 2px dotted #314D8C;
+    padding: 10px 50px;
+    box-shadow: 5px 5px #C9E0ED;
+    margin-bottom: 20px;
+}
+.child, #error_div{
+    display: none
+}
+
+#error_div, #ifat_error_div{
+border: 1px solid rgb(194, 147, 147);
+color: red;
+width: 900px;
+height: 35px;
+line-height: 35px;
+text-align: center;
+font-size: 14px;
+background-color: gainsboro;
+font-family: georgia;
+margin: 5px 0px 0px 0px;
+}
+#ifat_error_div{
+    width: 400px;
+    display: none;
+}
+#footermenu{
+    border: 1px solid red;
+    height: 30px;
+    width: 1100px;
+}
+.btmbutton{
+    width: 150px;
+    border: 1px solid black;
+    color: #ffffff;
+    height: 25px;
+    background: #1C1C1C;
+    cursor: pointer;
+    text-align: left;
+    padding: 2px 20px;
+    margin: 2px 5px;
+}
+#cover{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:#000;
+    top:0;
+    left:0;
+    z-index:2;
+    display:none;
+    opacity: 0.7;
+}
+#isolate_popup,#designate_popup, #negresults_popup, #extract_popup, #tray_popup,#extractresults_popup,#samplestore_popup,#extractresultstoprint_popup,#spec_excel_popup,#specimentoprint_popup{
+    position: absolute;
+    width: 500px;
+    z-index: 3;
+    background-color: #EFEFEF;
+    display: none;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+    left:0px;
+    top:0px;
+    margin-left: 0px;
+}
+#upload_popup{
+    position: absolute;
+    width: 500px;
+    z-index: 5;
+    background-color: #EFEFEF;
+    display: none;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 10px;
+}
+#closebtn{
+    position:relative;
+    width:25px;
+    height:25px;
+    float:right;
+    cursor:pointer;
+    top:0;
+    background: url(images/close_b.png);
+}
+#closebtn:hover{
+    background: url(images/close_r.png);
+}
+.flash-error, .flash-notice, .flash-success
+{
+    padding:.8em;
+    margin-bottom:1em;
+    border:2px solid #ddd;
+}
+
+.flash-error
+{
+    background:#FBE3E4;
+    color:#8a1f11;
+    border-color:#FBC2C4;
+}
+
+.flash-notice
+{
+    background:#FFF6BF;
+    color:#514721;
+    border-color:#FFD324;
+}
+
+.flash-success
+{
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+
+div.flash-error a
+{
+	color:#8a1f11;
+}
+
+div.flash-notice a
+{
+	color:#514721;
+}
+.flash-success a
+{
+	color:#264409;
+}
+#c_title{
+    border: 1px solid black;
+    min-height: 20px;  
+    line-height: 20px;
+    font-size: 14px;
+    margin-bottom: 30px;
+}
+#c_title_params li{
+    display: inline-block;
+    margin: 0px 10px;
+}
+#c_title_params .c_answer{
+    font-style: italic;
+    color: blue;
+}
+.note{
+    color: #6EADD6;
+    font-size: 14px;
+}
+.errorSummary{
+    border: 2px solid #C00;
+    padding: 7px 7px 12px 7px;
+    margin: 0 0 5px 80px;
+    background: #FEE;
+    font-size: 0.9em;
+    width: 990px;
+}
+.errorSummarylarge{
+    border: 2px solid #C00;
+    padding: 7px 7px 12px 7px;
+   
+    background: #FEE;
+    font-size: 0.9em;
+}
+#isolate_error, #negresults_error, #extract_error,#extractresults_error,#specstoreerror,#extractresultsprint_error{
+    display: none;
+    border: 2px solid #C00;
+    padding: 7px 7px 12px 7px;
+/*    margin: 0 0 5px 80px;*/
+    background: #FEE;
+    font-size: 0.9em;
+    width: 450px;
+}
+#printtbl th, td {
+//padding: 4px 10px 4px 5px;
+}
+#checkcounter{
+    width: 80px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+#specholder{
+    max-height: 500px !important;
+    overflow-y: scroll
+}
+
+#specimen-grid_c0{
+/*     display:none;*/
+}
+.form-control {
+    display: block;
+    height: 25px;
+    padding: 3px 7px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}

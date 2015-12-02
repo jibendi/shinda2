@@ -1,0 +1,93 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\QuestionnaireSearch */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+<div class="questionnaire-search">
+
+    <?php $form = ActiveForm::begin([
+        'action' => ['index'],
+        'method' => 'get',
+    ]); ?>
+
+    <?= $form->field($model, 'id_quest') ?>
+
+    <?= $form->field($model, 'fk_person') ?>
+
+    <?= $form->field($model, 'fk_study_no') ?>
+
+    <?= $form->field($model, 'date_interview') ?>
+
+    <?= $form->field($model, 'time_interview') ?>
+
+    <?php // echo $form->field($model, 'pregnant') ?>
+
+    <?php // echo $form->field($model, 'menstruating') ?>
+
+    <?php // echo $form->field($model, 'lmp') ?>
+
+    <?php // echo $form->field($model, 'ever_diagnosed_hbp') ?>
+
+    <?php // echo $form->field($model, 'under_med_hbp') ?>
+
+    <?php // echo $form->field($model, 'hbp_med_list') ?>
+
+    <?php // echo $form->field($model, 'suffered_malaria') ?>
+
+    <?php // echo $form->field($model, 'mal_episodes') ?>
+
+    <?php // echo $form->field($model, 'dates_mal_occured') ?>
+
+    <?php // echo $form->field($model, 'mal_hospitalised') ?>
+
+    <?php // echo $form->field($model, 'other_med_condition') ?>
+
+    <?php // echo $form->field($model, 'med_condition_list') ?>
+
+    <?php // echo $form->field($model, 'med_cond_drugs') ?>
+
+    <?php // echo $form->field($model, 'childhood_yrs') ?>
+
+    <?php // echo $form->field($model, 'childhood_yrs_specify') ?>
+
+    <?php // echo $form->field($model, 'member_>5_yr_schooling') ?>
+
+    <?php // echo $form->field($model, 'member_shouldb_primary') ?>
+
+    <?php // echo $form->field($model, 'mother_edu_level') ?>
+
+    <?php // echo $form->field($model, 'child_<5_died') ?>
+
+    <?php // echo $form->field($model, 'member_malnourished') ?>
+
+    <?php // echo $form->field($model, 'have_electricity') ?>
+
+    <?php // echo $form->field($model, 'toilet_type') ?>
+
+    <?php // echo $form->field($model, 'shared_toilet') ?>
+
+    <?php // echo $form->field($model, 'safe_drinking_water') ?>
+
+    <?php // echo $form->field($model, 'water_source') ?>
+
+    <?php // echo $form->field($model, 'time2_safe_h20') ?>
+
+    <?php // echo $form->field($model, 'house_floor') ?>
+
+    <?php // echo $form->field($model, 'fuel') ?>
+
+    <?php // echo $form->field($model, 'property_owned') ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

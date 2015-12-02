@@ -1,0 +1,98 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+use app\models\Participant;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\ParticipantSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Participants';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="participant-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Participant', ['create'], ['class' => 'btn btn-info']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            //'id_p',
+            'pk_person',
+            'name1',
+            'name2',
+            'name3',
+            // 'sex',
+            // 'dob',
+            // 'study_no',
+            // 'age',
+            // 'agecat',
+            // 'pk_res',
+            // 'ez_hm',
+            // 'locn',
+            // 'sublocn',
+            // 'latt',
+            // 'longd',
+            // 'shinda2',
+            // 'shinda3',
+            // 'visited1',
+            // 'visited2',
+            // 'visited3',
+            // 'studyArea',
+            // 'visited2nd',
+            [
+                'attribute'=>'Athropometric',
+              'format'=>'raw',
+              'value'=>function($data){
+        
+                  Participant::athropometrics($data->id_p);
+              }
+                ],
+                        [
+                'attribute'=>'Athropometric',
+              'format'=>'raw',
+              'value'=>function($data){
+        
+                    return Html::a('Spot BP', ['/bpspot/index'],['class'=>'btn btn-sm btn-info']);
+              }
+                ],
+                        [
+                'attribute'=>'Athropometric',
+              'format'=>'raw',
+              'value'=>function($data){
+                    $pkperson=$data->pk_person;
+        
+                    return Html::a('24 BP', ['/Bp24h/create'],['class'=>'btn btn-sm btn-info']);
+              }
+                ],
+                        [
+                'attribute'=>'Athropometric',
+              'format'=>'raw',
+              'value'=>function($data){
+        
+                    return Html::a('Arteriograph', ['/bp24h/index'],['class'=>'btn btn-sm btn-info']);
+              }
+                ],
+                        [
+                'attribute'=>'Athropometric',
+              'format'=>'raw',
+              'value'=>function($data){
+        
+                    return Html::a('Questionnaire', ['/Questionnaire/index'],['class'=>'btn btn-sm btn-info']);
+              }
+                ],      
+
+            //['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>

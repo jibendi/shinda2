@@ -1,0 +1,48 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bp24h */
+
+$this->title = $model->idbp24;
+$this->params['breadcrumbs'][] = ['label' => 'Bp24hs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="bp24h-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Update', ['update', 'id' => $model->idbp24], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->idbp24], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'idbp24',
+            'fk_study_no',
+            'fk_person',
+            'date_abpm_started',
+            'time_abpm_start',
+            'time_abpm_end',
+            'leaflet_given',
+            'diary_given',
+            'time_bed',
+            'time_woke',
+            'succ_readings',
+            'serial_no_abpm',
+            'diary_collected',
+            'wasuploaded',
+        ],
+    ]) ?>
+
+</div>

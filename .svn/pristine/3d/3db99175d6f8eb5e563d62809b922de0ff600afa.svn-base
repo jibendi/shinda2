@@ -1,0 +1,31 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Questionnaire */
+
+$this->title = 'Update Questionnaire';
+?>
+<div class="panel panel-primary">
+    
+  <div class="panel-heading">
+      <h3 class="panel-title">
+                           <div id="kbdm">
+    <kbd>
+        Study No : <?= $persondetails->study_no;?>     PID : <?= $persondetails->pk_person;?>      DOB : <?= $persondetails->dob;?>      Gender : <?= $persondetails->sex;?>      From : <?= $persondetails->sublocn;?>    Sub loc: <?= $persondetails->sublocn;?> 
+    </kbd>
+    
+</div>
+      </h3>
+  </div>
+  <div class="panel-body">
+<div class="questionnaire-update">
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>
+</div>
+</div>

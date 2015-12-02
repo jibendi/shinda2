@@ -1,0 +1,19 @@
+<?php
+
+use yii\helpers\Html;
+
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bpspot */
+
+$this->title = 'Create Bpspot';
+$this->params['breadcrumbs'][] = ['label' => 'Bpspots', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="bpspot-create">
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

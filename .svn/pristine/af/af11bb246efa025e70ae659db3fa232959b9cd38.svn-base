@@ -1,0 +1,145 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bp24h */
+/* @var $form yii\widgets\ActiveForm */
+?>
+<style>
+    #kbdm{
+        margin-left: 60px;
+    }
+</style>
+<!--<div id="kbdm">
+    <kbd>
+        Study No : 10 PID : 458756  DOB : 14/08/2001 Gender : Male  From : Kilifi Sub loc: Maweni 
+    </kbd>
+    
+</div>-->
+<p></p>
+    <p></p>
+
+    
+        <?php $form = ActiveForm::begin(); ?>
+    
+      <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+               <!-- <h3 class="panel-title">Study basic info</h3>-->
+                <kbd>
+                    <h5> Study No : 10 PID : 458756  DOB : 14/08/2001 Gender : Male  From : Kilifi Sub loc: Maweni </h5></kbd> <button type="button" class="btn btn-success">Upload Arteriograph Results</button>
+    
+              </div>
+            <div class="panel-body">
+                
+                       <div class="col-lg-3">
+                                <div class="panel panel-primary">
+
+                                    <div class="panel-body">
+                                <?= $form->field($model, 'date_abpm_started')->textInput() ?>
+
+                                <?= $form->field($model, 'time_abpm_start')->textInput() ?>
+
+                                <?= $form->field($model, 'time_abpm_end')->textInput() ?>
+                                         
+                                    </div>
+                                </div>
+                            </div>
+                <!--///////////-->
+                
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary">
+                                  
+                                <div class="panel-body">
+
+                               <?= $form->field($model, 'leaflet_given')->textInput() ?>
+
+                                <?= $form->field($model, 'diary_given')->textInput() ?>
+                                <?= $form->field($model, 'diary_collected')->textInput() ?>
+                           
+                                </div>
+                            </div>
+                        </div>
+                
+                <!--///////////-->
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary">
+                                 
+                                <div class="panel-body">
+                                                      
+                                <?= $form->field($model, 'time_bed')->textInput() ?>
+
+                                <?= $form->field($model, 'time_woke')->textInput() ?>
+                                
+                                </div>
+                            </div>
+                        </div>
+                   <!--///////////-->
+                    <div class="col-lg-3">
+                                <div class="panel panel-primary">
+
+                                    <div class="panel-body">
+                               <?= $form->field($model, 'succ_readings')->textInput() ?>
+
+                                <?= $form->field($model, 'serial_no_abpm')->textInput(['maxlength' => true]) ?>
+                                <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                                    </div>
+                                </div>
+                            </div>
+                <!--///////////-->
+                
+     
+            </div>
+        </div>
+    </div>
+    </div>
+  
+
+        <!--- A panel to hold the grid displaying a patient BP 24 monitoring data -->
+    
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">Participant Arteriography Results</h3>
+              </div>
+            <div class="panel-body">
+                <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+                    'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+            'time',
+            'SBPbr',
+            'dia',
+            'pulse',
+            'SBPao',
+            'AIXao',
+             'AIXbr',
+             'PWVao',
+             'PWVsd',
+            // 'fk_person',
+            // 'date_creation',
+            // 'fk_id24h',
+            // 'fk_study_no',
+            // 'comments:ntext',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<div class="bp24h-form">
+
+
+    <?php ActiveForm::end(); ?>
+
+</div>
+        
+        <!--  Change Upload Excel Modal    -->

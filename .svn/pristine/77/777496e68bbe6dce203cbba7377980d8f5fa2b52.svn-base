@@ -1,0 +1,88 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Questionnaire */
+/* @var $form yii\widgets\ActiveForm */
+?>
+<div class="questionnaire-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+    <div class="row">
+        <div class="col-lg-4">
+            <?= $form->field($model, 'date_interview')->textInput() ?>
+
+            <?= $form->field($model, 'time_interview')->textInput() ?>
+
+            <?= $form->field($model, 'pregnant')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'menstruating')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'lmp')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'ever_diagnosed_hbp')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'under_med_hbp')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'hbp_med_list')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'suffered_malaria')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'mal_episodes')->textInput() ?>
+
+            <?= $form->field($model, 'dates_mal_occured')->textInput() ?>
+
+            <?= $form->field($model, 'mal_hospitalised')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'other_med_condition')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'med_condition_list')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'med_cond_drugs')->textarea(['rows' => 6]) ?>
+
+            <?= $form->field($model, 'childhood_yrs')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'childhood_yrs_specify')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'member_greater5_yr_schooling')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'member_shouldb_primary')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-lg-4">
+            <?= $form->field($model, 'mother_edu_level')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'child_less5_died')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'member_malnourished')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'have_electricity')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'toilet_type')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'shared_toilet')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'safe_drinking_water')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'water_source')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'time2_safe_h20')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'house_floor')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'fuel')->textInput(['maxlength' => true]) ?>
+
+            <?= $form->field($model, 'property_owned')->textInput(['maxlength' => true]) ?>
+        </div>
+
+    
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

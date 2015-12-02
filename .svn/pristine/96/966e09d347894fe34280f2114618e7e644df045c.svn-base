@@ -1,0 +1,71 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\BloodSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Bloods';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="blood-index">
+
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Blood', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'fk_person',
+            'fk_study_no',
+            'blood_collected',
+            'reason_blood_not_collected',
+            // 'date_collect_blood',
+            // 'time_blood_collected',
+            // 'sample_labelled',
+            // 'genotype_aliquots',
+            // 'fbc_aliquots',
+            // 'elisa_aliquots',
+            // 'shinda_labels',
+            // 'frozen',
+            // 'fw_visit1',
+            // 'date_visit',
+            // 'time_visit',
+            // 'date_received_blood',
+            // 'time_received_blood',
+            // 'date_result_spot_blood',
+            // 'time_result_spot_blood',
+            // 'sickle_type',
+            // 'alpha_thela',
+            // 'wbc',
+            // 'hb',
+            // 'rbc',
+            // 'mcv',
+            // 'mchc',
+            // 'rdw',
+            // 'plt',
+            // 'na',
+            // 'k',
+            // 'cr',
+            // 'urea',
+            // 'chloride',
+            // 'angiopoietin2',
+            // 'HbA1c',
+            // 'tech_initial',
+            // 'tech_date',
+            // 'tech_time',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>

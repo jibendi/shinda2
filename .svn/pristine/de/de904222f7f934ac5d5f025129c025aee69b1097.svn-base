@@ -1,0 +1,82 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\models\Bpspot;
+
+/**
+ * BpspotSearch represents the model behind the search form about `app\models\Bpspot`.
+ */
+class BpspotSearch extends Bpspot
+{
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id_bps', 'consent_signed', 'study_info_given', 'diagnosed_bp_b4', 'any_bp_med_cur', 'bp_syst_1', 'bp_dyst_1', 'bp_syst_2', 'bp_dyst_2', 'bp_syst_3', 'bp_dyst_3', 'ref_24h_monitor', 'fk_person', 'fk_study_no', 'not_consented_rsn'], 'integer'],
+            [['date_visit', 'time_visit', 'serial_no_bpm'], 'safe'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = Bpspot::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id_bps' => $this->id_bps,
+            'date_visit' => $this->date_visit,
+            'time_visit' => $this->time_visit,
+            'consent_signed' => $this->consent_signed,
+            'study_info_given' => $this->study_info_given,
+            'diagnosed_bp_b4' => $this->diagnosed_bp_b4,
+            'any_bp_med_cur' => $this->any_bp_med_cur,
+            'bp_syst_1' => $this->bp_syst_1,
+            'bp_dyst_1' => $this->bp_dyst_1,
+            'bp_syst_2' => $this->bp_syst_2,
+            'bp_dyst_2' => $this->bp_dyst_2,
+            'bp_syst_3' => $this->bp_syst_3,
+            'bp_dyst_3' => $this->bp_dyst_3,
+            'ref_24h_monitor' => $this->ref_24h_monitor,
+            'fk_person' => $this->fk_person,
+            'fk_study_no' => $this->fk_study_no,
+            'not_consented_rsn' => $this->not_consented_rsn,
+        ]);
+
+        $query->andFilterWhere(['like', 'serial_no_bpm', $this->serial_no_bpm]);
+
+        return $dataProvider;
+    }
+}

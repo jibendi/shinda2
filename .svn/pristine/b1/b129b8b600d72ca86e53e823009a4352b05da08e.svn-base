@@ -1,0 +1,55 @@
+<?php
+use yii\helpers\Html;
+use yii\grid\GridView;
+$this->title = "Detailed report";
+?>
+<div class="panel panel-default">
+    <div class="panel-heading"><h4><?=$this->title;?> - <small>Attended participants</small></h4></div>
+  <div class="panel-body">
+<div class="row">
+    <div class="col-md-2 col-sm-4">
+        <div class="list-group">
+             <?= $this->render('_sidemenu', [
+             'model' =>''
+         ]) ?>
+                </div>
+        
+    </div>
+    <div class="col-md-10 col-sm-8">
+       <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            'pk_person',
+            'names',
+            [
+                'attribute'=>'sex',
+                'value'=>function($model){
+                    return $model->sex;
+                },
+                'filter'=>['m'=>'m', 'f'=>'f'],
+            ],
+                        [
+                'attribute'=>'consent',
+                'value'=>function($model){
+                    return $model->consent;
+                },
+                'filter'=>['Yes'=>'Yes', 'No'=>'No'],
+            ],
+            'updated_name'
+        ],
+    ]); ?>
+    </div>
+</div>
+
+  </div>
+</div>
+<style>
+.list-group .glyphicon {
+    float: right;
+}
+
+.list-group .span kbd {
+    float: right;
+}
+</style>

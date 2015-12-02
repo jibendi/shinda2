@@ -1,0 +1,19 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bpspot */
+
+$this->title = 'Update Bpspot: ' . ' ' . $model->id_bps;
+$this->params['breadcrumbs'][] = ['label' => 'Bpspots', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->id_bps, 'url' => ['view', 'id' => $model->id_bps]];
+$this->params['breadcrumbs'][] = 'Update';
+?>
+<div class="bpspot-update">
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

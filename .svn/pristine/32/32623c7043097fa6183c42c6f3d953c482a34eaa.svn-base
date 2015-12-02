@@ -1,0 +1,134 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use yii\helpers\Html;
+
+/**
+ * This is the model class for table "{{%participant}}".
+ *
+ * @property integer $id_p
+ * @property integer $pk_person
+ * @property string $name1
+ * @property string $name2
+ * @property string $name3
+ * @property integer $sex
+ * @property string $dob
+ * @property integer $study_no
+ * @property integer $age
+ * @property string $agecat
+ * @property integer $pk_res
+ * @property string $ez_hm
+ * @property string $locn
+ * @property string $sublocn
+ * @property double $latt
+ * @property double $longd
+ * @property integer $shinda2
+ * @property integer $shinda3
+ * @property integer $visited1
+ * @property integer $visited2
+ * @property integer $visited3
+ * @property integer $studyArea
+ * @property integer $visited2nd
+ *
+ * @property Bp24h[] $bp24hs
+ * @property BpSpot[] $bpSpots
+ * @property Questionnaire[] $questionnaires
+ * @property Urine[] $urines
+ */
+class Participant extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%participant}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['pk_person', 'sex', 'study_no', 'age', 'pk_res', 'shinda2', 'shinda3', 'visited1', 'visited2', 'visited3', 'visited2nd'], 'integer'],
+            [['dob'], 'safe'],
+            [['latt', 'longd'], 'number'],
+            [['name1', 'name2', 'name3', 'locn', 'sublocn','studyArea'], 'string', 'max' => 20],
+            [['agecat'], 'string', 'max' => 6],
+            [['ez_hm'], 'string', 'max' => 11],
+            [['pk_person'], 'unique']
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_p' => 'Id P',
+            'pk_person' => 'PID',
+            'name1' => 'Name1',
+            'name2' => 'Name2',
+            'name3' => 'Name3',
+            'sex' => 'Sex',
+            'dob' => 'DOB',
+            'study_no' => 'Study No',
+            'age' => 'Age',
+            'agecat' => 'Agecat',
+            'pk_res' => 'Pk Res',
+            'ez_hm' => 'Ez Hm',
+            'locn' => 'Locn',
+            'sublocn' => 'Sublocn',
+            'latt' => 'Latt',
+            'longd' => 'Longd',
+            'shinda2' => 'Shinda2',
+            'shinda3' => 'Shinda3',
+            'visited1' => 'Visited1',
+            'visited2' => 'Visited2',
+            'visited3' => 'Visited3',
+            'studyArea' => 'Study Area',
+            'visited2nd' => 'Visited2nd',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBp24hs()
+    {
+        return $this->hasOne(Bp24h::className(), ['fk_person' => 'pk_person']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getBpSpots()
+    {
+        return $this->hasMany(BpSpot::className(), ['fk_person' => 'pk_person']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getQuestionnaires()
+    {
+        return $this->hasMany(Questionnaire::className(), ['fk_person' => 'pk_person']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUrines()
+    {
+        return $this->hasMany(Urine::className(), ['fk_person' => 'pk_person']);
+    }
+    
+    public static function athropometrics($id){  
+        
+        return Html::a('Anthrop', ['/participant/index'],['class'=>'btn btn-sm btn-info']);
+    }
+}

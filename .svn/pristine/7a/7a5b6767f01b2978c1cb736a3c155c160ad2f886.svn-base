@@ -1,0 +1,71 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Blood */
+
+$this->title = $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Bloods', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="blood-view">
+
+
+    <p>
+        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id',
+            'fk_person',
+            'blood_collected',
+            'reason_blood_not_collected',
+            'date_collect_blood',
+            'time_blood_collected',
+            'sample_labelled',
+            'genotype_aliquots',
+            'fbc_aliquots',
+            'elisa_aliquots',
+            'shinda_labels',
+            'frozen',
+            'fw_visit1',
+            'date_visit',
+            'time_visit',
+            'date_received_blood',
+            'time_received_blood',
+            'date_result_spot_blood',
+            'time_result_spot_blood',
+            'sickle_type',
+            'alpha_thela',
+            'wbc',
+            'hb',
+            'rbc',
+            'mcv',
+            'mchc',
+            'rdw',
+            'plt',
+            'na',
+            'k',
+            'cr',
+            'urea',
+            'chloride',
+            'angiopoietin2',
+            'HbA1c',
+            'tech_initial',
+            'tech_date',
+            'tech_time',
+        ],
+    ]) ?>
+
+</div>

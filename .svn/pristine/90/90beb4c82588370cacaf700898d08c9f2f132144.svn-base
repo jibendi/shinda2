@@ -1,0 +1,95 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "{{%bp_spot}}".
+ *
+ * @property integer $id_bps
+ * @property integer $fk_study_no
+ * @property integer $fk_person
+ * @property string $date_visit
+ * @property string $time_visit
+ * @property integer $consent_signed
+ * @property integer $not_consented_rsn
+ * @property integer $study_info_given
+ * @property double $height
+ * @property double $weight
+ * @property double $muac
+ * @property double $ssn
+ * @property integer $pulse
+ * @property integer $bp_syst_1
+ * @property integer $bp_dyst_1
+ * @property integer $bp_syst_2
+ * @property integer $bp_dyst_2
+ * @property integer $bp_syst_3
+ * @property integer $bp_dyst_3
+ * @property string $serial_no_bpm
+ *
+ * @property Participant $fkPerson
+ */
+class Bpspot extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return '{{%bp_spot}}';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['fk_study_no', 'fk_person'], 'required'],
+            [['fk_study_no', 'fk_person', 'consent_signed', 'not_consented_rsn', 'study_info_given', 'pulse', 'bp_syst_1', 'bp_dyst_1', 'bp_syst_2', 'bp_dyst_2', 'bp_syst_3', 'bp_dyst_3'], 'integer'],
+            [['date_visit', 'time_visit'], 'safe'],
+            [['height', 'weight', 'muac', 'ssn'], 'number'],
+            [['serial_no_bpm'], 'string', 'max' => 20]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_bps' => 'Id Bps',
+            'fk_study_no' => 'Study No:',
+            'fk_person' => 'PID:',
+            'date_visit' => 'Date Visit:',
+            'time_visit' => 'Time Visit:',
+            'consent_signed' => 'Consent Signed?',
+            'not_consented_rsn' => 'Reason Not Consented',
+            'study_info_given' => 'Infomation sheet given?',
+            'height' => 'Height',
+            'weight' => 'Weight',
+            'muac' => 'MUAC',
+            'ssn' => 'SSN',
+            'pulse' => 'Pulse',
+            'bp_syst_1' => 'Bp Syst 1',
+            'bp_dyst_1' => 'Bp Dyst 1',
+            'bp_syst_2' => 'Bp Syst 2',
+            'bp_dyst_2' => 'Bp Dyst 2',
+            'bp_syst_3' => 'Bp Syst 3',
+            'bp_dyst_3' => 'Bp Dyst 3',
+            'serial_no_bpm' => 'Serial No of BP Machine',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFkPerson()
+    {
+        return $this->hasOne(Participant::className(), ['pk_person' => 'fk_person']);
+    }
+    
+   
+}

@@ -1,0 +1,68 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\DetailView;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Questionnaire */
+
+$this->title = $model->id_quest;
+$this->params['breadcrumbs'][] = ['label' => 'Questionnaires', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="questionnaire-view">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <p>
+        <?= Html::a('Update', ['update', 'id' => $model->id_quest], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id_quest], [
+            'class' => 'btn btn-danger',
+            'data' => [
+                'confirm' => 'Are you sure you want to delete this item?',
+                'method' => 'post',
+            ],
+        ]) ?>
+    </p>
+
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'id_quest',
+            'fk_person',
+            'fk_study_no',
+            'date_interview',
+            'time_interview',
+            'pregnant',
+            'menstruating:ntext',
+            'lmp:ntext',
+            'ever_diagnosed_hbp',
+            'under_med_hbp',
+            'hbp_med_list:ntext',
+            'suffered_malaria',
+            'mal_episodes',
+            'dates_mal_occured',
+            'mal_hospitalised',
+            'other_med_condition',
+            'med_condition_list:ntext',
+            'med_cond_drugs:ntext',
+            'childhood_yrs',
+            'childhood_yrs_specify',
+            'member_>5_yr_schooling',
+            'member_shouldb_primary',
+            'mother_edu_level',
+            'child_<5_died',
+            'member_malnourished',
+            'have_electricity',
+            'toilet_type',
+            'shared_toilet',
+            'safe_drinking_water',
+            'water_source',
+            'time2_safe_h20',
+            'house_floor',
+            'fuel',
+            'property_owned',
+        ],
+    ]) ?>
+
+</div>

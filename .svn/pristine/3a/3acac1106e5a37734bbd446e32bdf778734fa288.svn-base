@@ -1,0 +1,109 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Blood */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+<div class="blood-form">
+
+    <?php $form = ActiveForm::begin(); ?>
+    
+        
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+            <h3 class="panel-title">
+                 <kbd>
+                    <h5> Study No : 10 PID : 458756  DOB : 14/08/2001 Gender : Male  From : Kilifi Sub loc: Maweni </h5></kbd>
+    
+              </div>
+            </h3>
+            </div>
+            <div class="panel-body">
+            <div class="row">
+                      
+                <div class="col-lg-4">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Blood Collection Information</h3>
+                      </div>
+                        <div class="panel-body">
+                            <?= $form->field($model, 'blood_collected')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'reason_blood_not_collected')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'date_collect_blood')->textInput() ?>
+
+                            <?= $form->field($model, 'time_blood_collected')->textInput() ?>
+
+                            <?= $form->field($model, 'sample_labelled')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'genotype_aliquots')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'fbc_aliquots')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'elisa_aliquots')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'shinda_labels')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'frozen')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'fw_visit1')->textInput(['maxlength' => true]) ?>
+
+                            <?= $form->field($model, 'date_visit')->textInput() ?>
+
+                            <?= $form->field($model, 'time_visit')->textInput() ?>
+                        </div>
+                    </div>
+                </div>
+                <!--///////////////////////////////////////////// -->
+                <div class="col-lg-8">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Blood Results</h3>
+                      </div>
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead><th>Date Received</th> <th>Time Received</th><th>Date Results</th><th>Time Results</th><th>Tech Initials</th></thead>
+                            <tr><td><?= $form->field($model, 'date_received_blood')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'time_received_blood')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'date_result_spot_blood')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'time_result_spot_blood')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'tech_initial')->textInput()->textInput()->label(false) ?></td></tr>
+                                
+                            </table>
+                            
+                            <table class="table table-bordered">
+                            <thead><th></th> <th>WBC</th> <th>HB</th><th>RBC</th><th>MCV</th><th>MCHC</th><th>RDW</th><th>PLT</th></thead>
+                            <tr><td>Haemogram</td><td><?= $form->field($model, 'wbc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'hb')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'rbc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'mcv')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'mchc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'rdw')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'plt')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Sickle Cell Type</td><td colspan="4"><?= $form->field($model, 'sickle_type')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Alpha Thalessaemia</td><td colspan="4"><?= $form->field($model, 'alpha_thela')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">HbA1c</td><td colspan="4"><?= $form->field($model, 'HbA1c')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Sodium</td><td colspan="4"><?= $form->field($model, 'na')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Potassium</td><td colspan="4"><?= $form->field($model, 'k')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Urea</td><td colspan="4"><?= $form->field($model, 'urea')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Creatinine</td><td colspan="4"><?= $form->field($model, 'cr')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Chloride</td><td colspan="4"><?= $form->field($model, 'chloride')->textInput()->textInput()->label(false) ?></td></tr>
+                            <tr><td colspan="2">Angiopoietin 2</td><td colspan="4"><?= $form->field($model, 'angiopoietin2')->textInput()->textInput()->label(false) ?></td></tr>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                <!--///////////////////////////////////////////// -->
+            </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <?= $form->field($model, 'tech_date')->textInput() ?>
+
+    <?= $form->field($model, 'tech_time')->textInput() ?>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>

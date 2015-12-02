@@ -1,0 +1,153 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
+use kartik\widgets\TimePicker;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Blood */
+/* @var $form yii\widgets\ActiveForm */
+?>
+<div class="panel panel-primary">
+<div class="panel-heading"><h3 class="panel-title">Blood</h3></div>
+    <div class="panel-body">
+        <div id="kbdm">
+                        <kbd>Study No : <small><?= $persondetails->study_no;?></small>     PID : <small><?= $persondetails->pk_person;?></small>      DOB : <small><?= date("d/m/Y", strtotime($persondetails->dob));?></small>     Gender : <small><?= $persondetails->sex;?></small>      From : <small><?= $persondetails->sublocn;?></small>    Sub loc: <small><?= $persondetails->sublocn;?></small> </kbd>
+                    </div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Blood collection information</a></li>
+          <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Blood results</a></li>
+        </ul>
+
+  <div class="blood-form">
+    <?php $form = ActiveForm::begin(['id'=>'form-blood']); ?>
+    <?php $yesno = ['Yes' => 'Yes','No' => 'No',];?>
+  <!-- Tab panes -->
+  <?= $form->errorSummary($model); ?>
+  <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="home">
+          <div class="row">
+              <div class="col-lg-6">
+                    <?= $form->field($model, 'blood_collected')->dropDownList($yesno, ['prompt'=>'--Please select--', 'onChange' => 'disableEntireForm($(this).val())']);?>
+
+                    <?= $form->field($model, 'reason_blood_not_collected')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'date_collect_blood')->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd','options'=>['class'=>'form-control'],'clientOptions' => ['changeMonth' => true,'changeYear' => true,'maxDate' => 'today',]])?> 
+
+                    <?= $form->field($model, 'time_blood_collected')->widget(TimePicker::classname(), []);?>
+
+                    <?= $form->field($model, 'sample_labelled')->dropDownList($yesno, ['prompt'=>'--Please select--']);?>
+
+                    <?= $form->field($model, 'genotype_aliquots')->textInput(['maxlength' => true]) ?>
+                  
+                    <?= $form->field($model, 'fbc_aliquots')->textInput(['maxlength' => true]) ?>
+              </div>
+              <div class="col-lg-6">
+
+                    <?= $form->field($model, 'elisa_aliquots')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'shinda_labels')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'frozen')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'fw_visit1')->textInput(['maxlength' => true]) ?>
+
+                    <?= $form->field($model, 'date_visit')->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd','options'=>['class'=>'form-control'],'clientOptions' => ['changeMonth' => true,'changeYear' => true,'maxDate' => 'today',]])?> 
+
+                    <?= $form->field($model, 'time_visit')->widget(TimePicker::classname(), []);?>
+              </div>
+          </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="profile">
+          <div class="row">
+              <div class="col-lg-6">
+                    <?= $form->field($model, 'date_received_blood')->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd','options'=>['class'=>'form-control'],'clientOptions' => ['changeMonth' => true,'changeYear' => true,'maxDate' => 'today',]]) ?>
+                    <?= $form->field($model, 'time_received_blood')->widget(TimePicker::classname(), []) ?>
+                    <?= $form->field($model, 'date_result_spot_blood')->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd','options'=>['class'=>'form-control'],'clientOptions' => ['changeMonth' => true,'changeYear' => true,'maxDate' => 'today',]]) ?>
+                    <?= $form->field($model, 'time_result_spot_blood')->widget(TimePicker::classname(), []) ?>
+                    <?= $form->field($model, 'tech_initial')->textInput()->textInput() ?>
+                    <?= $form->field($model, 'sickle_type')->textInput()->textInput() ?>
+                    <?= $form->field($model, 'alpha_thela')->textInput()->textInput() ?>
+                    <?= $form->field($model, 'HbA1c')->textInput()->textInput() ?>
+                    <?= $form->field($model, 'na')->textInput()->textInput() ?>
+              </div>
+              <div class="col-lg-6">
+                <table class="table table-bordered">
+                    <thead><th></th> <th>WBC</th> <th>HB</th><th>RBC</th><th>MCV</th><th>MCHC</th><th>RDW</th><th>PLT</th></thead>
+                    <tr><td>Haemogram</td><td><?= $form->field($model, 'wbc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'hb')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'rbc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'mcv')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'mchc')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'rdw')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'plt')->textInput()->textInput()->label(false) ?></td></tr>
+                </table>
+                
+                 <?= $form->field($model, 'k')->textInput()->textInput() ?>
+                 <?= $form->field($model, 'urea')->textInput()->textInput() ?>
+                 <?= $form->field($model, 'cr')->textInput()->textInput() ?>
+                 <?= $form->field($model, 'chloride')->textInput()->textInput() ?>
+                 <?= $form->field($model, 'angiopoietin2')->textInput()->textInput() ?>
+               
+                <?= $form->field($model, 'tech_date')->widget(DatePicker::className(), ['dateFormat' => 'yyyy-MM-dd','options'=>['class'=>'form-control'],'clientOptions' => ['changeMonth' => true,'changeYear' => true,'maxDate' => 'today',]]);?>
+
+                <?= $form->field($model, 'tech_time')->widget(TimePicker::classname(), []) ?>
+              </div>
+          </div>  
+      </div>
+  </div>
+
+  
+  
+  
+  
+  
+  
+</div>
+
+    <div class="form-group">
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary btn-block']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
+</div>
+
+<style>
+    .hasDatepicker{
+        z-index: 999999;
+        position: relative;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+        var bloodcollected = $("#blood-blood_collected").val();
+        if(bloodcollected == "No"){
+            $('#form-blood *').filter(':input').each(function(){
+              var ids = $(this).attr('id');
+                if(ids == "blood-blood_collected" || ids == "blood-reason_blood_not_collected"){
+                    //do nothing
+                }else{
+                    $("#"+ids).attr("disabled", "disabled");
+                    $("#"+ids).val("");
+                }
+            });
+        }
+    });
+    
+    function disableEntireForm(val){
+        if(val == "No"){
+            $('#form-blood *').filter(':input').each(function(){
+              var ids = $(this).attr('id');
+                if(ids == "blood-blood_collected" || ids == "blood-reason_blood_not_collected"){
+                    //do nothing
+                }else{
+                    $("#"+ids).attr("disabled", "disabled");
+                    $("#"+ids).val("");
+                }
+            });
+        }else{
+             $('#form-blood *').filter(':input').each(function(){
+              var ids = $(this).attr('id');
+                $("#"+ids).removeAttr("disabled");
+            });
+        }
+    }
+</script>

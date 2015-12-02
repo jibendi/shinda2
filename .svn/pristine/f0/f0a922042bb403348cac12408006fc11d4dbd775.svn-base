@@ -1,0 +1,67 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\QuestionnaireSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Questionnaires';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="questionnaire-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Questionnaire', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id_quest',
+            'fk_person',
+            'fk_study_no',
+            'date_interview',
+            'time_interview',
+            // 'pregnant',
+            // 'menstruating:ntext',
+            // 'lmp:ntext',
+            // 'ever_diagnosed_hbp',
+            // 'under_med_hbp',
+            // 'hbp_med_list:ntext',
+            // 'suffered_malaria',
+            // 'mal_episodes',
+            // 'dates_mal_occured',
+            // 'mal_hospitalised',
+            // 'other_med_condition',
+            // 'med_condition_list:ntext',
+            // 'med_cond_drugs:ntext',
+            // 'childhood_yrs',
+            // 'childhood_yrs_specify',
+            // 'member_>5_yr_schooling',
+            // 'member_shouldb_primary',
+            // 'mother_edu_level',
+            // 'child_<5_died',
+            // 'member_malnourished',
+            // 'have_electricity',
+            // 'toilet_type',
+            // 'shared_toilet',
+            // 'safe_drinking_water',
+            // 'water_source',
+            // 'time2_safe_h20',
+            // 'house_floor',
+            // 'fuel',
+            // 'property_owned',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>

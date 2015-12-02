@@ -1,0 +1,22 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bp24h */
+
+$this->title = 'Update Bp24h: ' . ' ' . $model->idbp24;
+$this->params['breadcrumbs'][] = ['label' => 'Bp24hs', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->idbp24, 'url' => ['view', 'id' => $model->idbp24]];
+$this->params['breadcrumbs'][] = 'Update';
+?>
+<div class="bp24h-update">
+
+
+    <?= $this->render('_form', [
+        'model' => $model,
+        //'searchModel' => $searchModel,
+         'dataProvider' => $dataProvider,
+    ]) ?>
+
+</div>

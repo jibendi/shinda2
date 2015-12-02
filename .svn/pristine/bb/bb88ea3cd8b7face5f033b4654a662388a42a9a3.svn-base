@@ -1,0 +1,98 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
+use app\models\Questionnaire;
+
+/**
+ * QuestionnaireSearch represents the model behind the search form about `app\models\Questionnaire`.
+ */
+class QuestionnaireSearch extends Questionnaire
+{
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['id_quest', 'fk_person', 'fk_study_no', 'mal_episodes'], 'integer'],
+            [['date_interview', 'time_interview', 'pregnant', 'menstruating', 'lmp', 'ever_diagnosed_hbp', 'under_med_hbp', 'hbp_med_list', 'suffered_malaria', 'dates_mal_occured', 'mal_hospitalised', 'other_med_condition', 'med_condition_list', 'med_cond_drugs', 'childhood_yrs', 'childhood_yrs_specify', 'member_greater5_yr_schooling', 'member_shouldb_primary', 'mother_edu_level', 'child_less5_died', 'member_malnourished', 'have_electricity', 'toilet_type', 'shared_toilet', 'safe_drinking_water', 'water_source', 'time2_safe_h20', 'house_floor', 'fuel', 'property_owned'], 'safe'],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function scenarios()
+    {
+        // bypass scenarios() implementation in the parent class
+        return Model::scenarios();
+    }
+
+    /**
+     * Creates data provider instance with search query applied
+     *
+     * @param array $params
+     *
+     * @return ActiveDataProvider
+     */
+    public function search($params)
+    {
+        $query = Questionnaire::find();
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        $this->load($params);
+
+        if (!$this->validate()) {
+            // uncomment the following line if you do not want to return any records when validation fails
+            // $query->where('0=1');
+            return $dataProvider;
+        }
+
+        $query->andFilterWhere([
+            'id_quest' => $this->id_quest,
+            'fk_person' => $this->fk_person,
+            'fk_study_no' => $this->fk_study_no,
+            'date_interview' => $this->date_interview,
+            'time_interview' => $this->time_interview,
+            'mal_episodes' => $this->mal_episodes,
+            'dates_mal_occured' => $this->dates_mal_occured,
+        ]);
+
+        $query->andFilterWhere(['like', 'pregnant', $this->pregnant])
+            ->andFilterWhere(['like', 'menstruating', $this->menstruating])
+            ->andFilterWhere(['like', 'lmp', $this->lmp])
+            ->andFilterWhere(['like', 'ever_diagnosed_hbp', $this->ever_diagnosed_hbp])
+            ->andFilterWhere(['like', 'under_med_hbp', $this->under_med_hbp])
+            ->andFilterWhere(['like', 'hbp_med_list', $this->hbp_med_list])
+            ->andFilterWhere(['like', 'suffered_malaria', $this->suffered_malaria])
+            ->andFilterWhere(['like', 'mal_hospitalised', $this->mal_hospitalised])
+            ->andFilterWhere(['like', 'other_med_condition', $this->other_med_condition])
+            ->andFilterWhere(['like', 'med_condition_list', $this->med_condition_list])
+            ->andFilterWhere(['like', 'med_cond_drugs', $this->med_cond_drugs])
+            ->andFilterWhere(['like', 'childhood_yrs', $this->childhood_yrs])
+            ->andFilterWhere(['like', 'childhood_yrs_specify', $this->childhood_yrs_specify])
+            ->andFilterWhere(['like', 'member_greater5_yr_schooling', $this->member_greater5_yr_schooling])
+            ->andFilterWhere(['like', 'member_shouldb_primary', $this->member_shouldb_primary])
+            ->andFilterWhere(['like', 'mother_edu_level', $this->mother_edu_level])
+            ->andFilterWhere(['like', 'child_less5_died', $this->child_less5_died])
+            ->andFilterWhere(['like', 'member_malnourished', $this->member_malnourished])
+            ->andFilterWhere(['like', 'have_electricity', $this->have_electricity])
+            ->andFilterWhere(['like', 'toilet_type', $this->toilet_type])
+            ->andFilterWhere(['like', 'shared_toilet', $this->shared_toilet])
+            ->andFilterWhere(['like', 'safe_drinking_water', $this->safe_drinking_water])
+            ->andFilterWhere(['like', 'water_source', $this->water_source])
+            ->andFilterWhere(['like', 'time2_safe_h20', $this->time2_safe_h20])
+            ->andFilterWhere(['like', 'house_floor', $this->house_floor])
+            ->andFilterWhere(['like', 'fuel', $this->fuel])
+            ->andFilterWhere(['like', 'property_owned', $this->property_owned]);
+
+        return $dataProvider;
+    }
+}

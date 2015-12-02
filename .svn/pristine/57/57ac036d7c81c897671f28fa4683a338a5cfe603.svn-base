@@ -1,0 +1,125 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "tbl_questionnaire".
+ *
+ * @property integer $id_quest
+ * @property integer $fk_person
+ * @property integer $fk_study_no
+ * @property string $date_interview
+ * @property string $time_interview
+ * @property string $pregnant
+ * @property string $menstruating
+ * @property string $lmp
+ * @property string $ever_diagnosed_hbp
+ * @property string $under_med_hbp
+ * @property string $hbp_med_list
+ * @property string $suffered_malaria
+ * @property integer $mal_episodes
+ * @property string $dates_mal_occured
+ * @property string $mal_hospitalised
+ * @property string $other_med_condition
+ * @property string $med_condition_list
+ * @property string $med_cond_drugs
+ * @property string $childhood_yrs
+ * @property string $childhood_yrs_specify
+ * @property string $member_>5_yr_schooling
+ * @property string $member_shouldb_primary
+ * @property string $mother_edu_level
+ * @property string $child_<5_died
+ * @property string $member_malnourished
+ * @property string $have_electricity
+ * @property string $toilet_type
+ * @property string $shared_toilet
+ * @property string $safe_drinking_water
+ * @property string $water_source
+ * @property string $time2_safe_h20
+ * @property string $house_floor
+ * @property string $fuel
+ * @property string $property_owned
+ *
+ * @property Participant $fkPerson
+ */
+class Questionnaire extends \yii\db\ActiveRecord
+{
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'tbl_questionnaire';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['fk_person', 'fk_study_no'], 'required'],
+            [['fk_person', 'fk_study_no', 'mal_episodes'], 'integer'],
+            [['date_interview', 'time_interview', 'dates_mal_occured'], 'safe'],
+            [['menstruating', 'lmp', 'hbp_med_list', 'med_condition_list', 'med_cond_drugs'], 'string'],
+            [['pregnant', 'ever_diagnosed_hbp', 'under_med_hbp', 'suffered_malaria', 'mal_hospitalised', 'other_med_condition', 'member_greater5_yr_schooling', 'member_shouldb_primary', 'child_less5_died', 'member_malnourished', 'have_electricity', 'shared_toilet', 'safe_drinking_water'], 'string', 'max' => 3],
+            [['childhood_yrs', 'childhood_yrs_specify', 'time2_safe_h20'], 'string', 'max' => 35],
+            [['mother_edu_level'], 'string', 'max' => 20],
+            [['toilet_type', 'water_source', 'house_floor', 'fuel'], 'string', 'max' => 15],
+            [['property_owned'], 'string', 'max' => 120]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id_quest' => 'Id Quest',
+            'fk_person' => 'Fk Person',
+            'fk_study_no' => 'Fk Study No',
+            'date_interview' => 'Date Interview',
+            'time_interview' => 'Time Interview',
+            'pregnant' => 'Pregnant',
+            'menstruating' => 'Menstruating',
+            'lmp' => 'Lmp',
+            'ever_diagnosed_hbp' => 'Ever Diagnosed Hbp',
+            'under_med_hbp' => 'Under Med Hbp',
+            'hbp_med_list' => 'Hbp Med List',
+            'suffered_malaria' => 'Suffered Malaria',
+            'mal_episodes' => 'Mal Episodes',
+            'dates_mal_occured' => 'Dates Mal Occured',
+            'mal_hospitalised' => 'Mal Hospitalised',
+            'other_med_condition' => 'Other Med Condition',
+            'med_condition_list' => 'Med Condition List',
+            'med_cond_drugs' => 'Med Cond Drugs',
+            'childhood_yrs' => 'Childhood Yrs',
+            'childhood_yrs_specify' => 'Childhood Yrs Specify',
+            'member_greater5_yr_schooling' => 'Member >5 Yr Schooling',
+            'member_shouldb_primary' => 'Member Shouldb Primary',
+            'mother_edu_level' => 'Mother Edu Level',
+            'child_less5_died' => 'Child <5 Died',
+            'member_malnourished' => 'Member Malnourished',
+            'have_electricity' => 'Have Electricity',
+            'toilet_type' => 'Toilet Type',
+            'shared_toilet' => 'Shared Toilet',
+            'safe_drinking_water' => 'Safe Drinking Water',
+            'water_source' => 'Water Source',
+            'time2_safe_h20' => 'Time2 Safe H20',
+            'house_floor' => 'House Floor',
+            'fuel' => 'Fuel',
+            'property_owned' => 'Property Owned',
+        ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFkPerson()
+    {
+        return $this->hasOne(Participant::className(), ['pk_person' => 'fk_person']);
+    }
+}

@@ -1,0 +1,87 @@
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Bpspot */
+/* @var $form yii\widgets\ActiveForm */
+?>
+<style>
+    #kbdm{
+        margin-left: 60px;
+    }
+</style>
+
+<?php $form = ActiveForm::begin([
+    'id' => 'bpspot-form',
+        ]); ?>
+     <div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">
+                      <div id="kbdm">
+    <kbd>
+        Study No : 10     PID : 458756     DOB : 14/08/2001     Gender : Male      From : Kilifi    Sub loc: Maweni 
+    </kbd>
+    
+</div>
+                  </h3>
+              </div>
+            <div class="panel-body">
+<div class="row">
+    <div class="col-lg-4">
+        <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Study basic info</h3>
+      </div>
+          <div class="panel-body">
+                      <?php $defaultdate= Date('Y-m-d') ?>
+
+                    <?= $form->field($model, 'date_visit')->widget(DatePicker::className(), ['options' => ['class' => 'form-control']],['clientOptions' => ['defaultDate' => '$defaultdate','changeMonth'=>true,'changeYear'=>true]])?> 
+
+                    <?= $form->field($model, 'time_visit')->textInput() ?>
+                    <?php
+                        $list = new app\models\Valuelist();
+                    ?>
+                    <?= $form->field($model, 'consent_signed')->dropDownList($list->valuelist('Yesno'), ['prompt'=>'--Please select']) ?>
+
+                    <?= $form->field($model, 'not_consented_rsn')->textInput() ?>
+
+                    <?= $form->field($model, 'study_info_given')->dropDownList($list->valuelist('Yesno'), ['prompt'=>'--Please select']) ?>
+
+                    <?= $form->field($model, 'serial_no_bpm')->textInput(['maxlength' => true]) ?>
+          </div>
+        </div>
+    </div>
+<div class="col-lg-8">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        <h3 class="panel-title">Anthropometric and Blood Pressure Measurement</h3>
+        </div>
+          <div class="panel-body">
+              <table class="table table-bordered">
+                    <thead><th>Height</th><th>Weight</th><th>MUAC</th><th>SSN</th><th>Pulse</th></thead>
+                    <tr><td><?= $form->field($model, 'height')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'weight')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'muac')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'ssn')->textInput()->textInput()->label(false) ?></td><td><?= $form->field($model, 'pulse')->textInput()->textInput()->label(false) ?></td></tr>
+                        </table>
+              <table class="table table-bordered">
+                  <thead><th></th><th>Systolic</th><th>Diastolic</th></thead>
+                    <tr><td>Bp Measurement 1</td><td> <?= $form->field($model, 'bp_syst_1')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'bp_dyst_1')->textInput()->label(false) ?></td></tr>
+                    <tr><td>Bp Measurement 2</td><td> <?= $form->field($model, 'bp_syst_2')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'bp_dyst_2')->textInput()->label(false) ?></td></tr>
+                    <tr><td>Bp Measurement 3</td><td> <?= $form->field($model, 'bp_syst_2')->textInput()->label(false) ?></td><td>  <?= $form->field($model, 'bp_dyst_3')->textInput()->label(false) ?></td></tr>
+              </table>
+          </div>
+    </div>   
+</div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-info btn-block' : 'btn btn-primary btn-block']) ?>
+
+    </div>
+</div>
+</div>
+<?php ActiveForm::end(); ?>

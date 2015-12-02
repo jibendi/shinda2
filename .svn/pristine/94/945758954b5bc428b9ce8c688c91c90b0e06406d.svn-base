@@ -1,0 +1,117 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+use app\models\Participant;
+use yii\widgets\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\ParticipantSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'List of participants';
+?> 
+    <?php if(Yii::$app->session->hasFlash('success')): ?>
+<div class="alert alert-success" role="alert">
+    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+    <?= Yii::$app->session->getFlash('success') ?><span class="glyphicon glyphicon-ok"></span>
+</div>
+<?php endif; ?>
+<div class="panel panel-primary">
+    
+  <div class="panel-heading">
+    <h3 class="panel-title"><?= Html::encode($this->title) ?></h3>
+  </div>
+  <div class="panel-body">
+<div class="participant-index">
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            'pk_person',
+            'name1',
+            'name2',
+            'name3',
+            [
+              'format'=>'raw',
+              'value'=>function($data){
+                    $pkperson=$data->pk_person;
+                    return Html::button('Consent',['class'=>'btn btn-xs btn-primary', 'onClick'=>"showModalConsent($data->id_p)"]);
+              }
+            ], 
+            /*[
+              'format'=>'raw',
+              'value'=>function($data){
+                    $pkperson=$data->pk_person;
+                    return Html::a('Questionnaire', ['questionnaire/create', 'pid'=>$pkperson],['class'=>'btn btn-xs btn-primary']);
+              }
+            ], */ 
+        ],
+    ]); ?>
+
+</div>
+</div>
+</div>
+<script>
+    function showModalConsent(id){
+        $("#idparticipant").val(id);
+       $("#consentModal").modal('show');
+    }
+    
+    function updateConsent(){
+        var consent = $("#participant-consent").val(),
+        rsnnotconsented = $("#participant-reason_notconsented").val();
+        if(consent ==''){
+            alert("Please select the consent");
+        }else if(consent == 'No' && rsnnotconsented ==""){
+            alert("Please select the reason");
+        }else{
+            var id = $("#idparticipant").val();
+            var href = "/shinda2/web/index.php/participant/updateconsent/"+id+"?consent="+consent+"&notconsent="+rsnnotconsented;
+            window.location.href = href;
+        }
+    }
+    
+    function toggleReason(val){
+        if(val == 'No'){
+            $(".reasons").removeClass('hide');
+        }else{
+            $(".reasons").addClass('hide');
+            $("#participant-reason_notconsented").val("");
+        }
+     
+    }
+</script>
+
+<!-- Modal -->
+<div class="modal fade" id="consentModal" tabindex="-1" role="dialog" aria-labelledby="consentModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Consent form</h4>
+      </div>
+      <div class="modal-body">
+          <?php $model = new Participant();?>
+          
+          <?php $form = ActiveForm::begin(); ?>
+          <?php
+            $yesno = [
+                'Yes' => 'Yes',
+                'No' => 'No',
+            ];
+          ?>
+    <?= $form->field($model, 'consent')->dropDownList($yesno, ['prompt'=>'--Please select--', 'onChange'=>'toggleReason($(this).val())']) ?>
+
+          <span class="reasons hide"><?= $form->field($model, 'reason_notconsented')->textInput(['maxlength' => true]) ?></span>
+          
+      </div>
+      <div class="modal-footer">
+          <input type="hidden" value="" id="idparticipant" />
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onClick="updateConsent()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

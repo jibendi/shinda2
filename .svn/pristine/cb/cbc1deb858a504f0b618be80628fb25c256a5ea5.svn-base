@@ -1,0 +1,53 @@
+<?php
+
+use yii\helpers\Html;
+use yii\grid\GridView;
+
+/* @var $this yii\web\View */
+/* @var $searchModel app\models\SearchBpspot */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Bpspots';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="bpspot-index">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <p>
+        <?= Html::a('Create Bpspot', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id_bps',
+            'fk_study_no',
+            'fk_person',
+            'date_visit',
+            'time_visit',
+            // 'consent_signed',
+            // 'not_consented_rsn',
+            // 'study_info_given',
+            // 'height',
+            // 'weight',
+            // 'muac',
+            // 'ssn',
+            // 'pulse',
+            // 'bp_syst_1',
+            // 'bp_dyst_1',
+            // 'bp_syst_2',
+            // 'bp_dyst_2',
+            // 'bp_syst_3',
+            // 'bp_dyst_3',
+            // 'serial_no_bpm',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+</div>
